@@ -24,7 +24,6 @@ public class Role {
     }
 
     public Role(User user, RoleType roleType) {
-        this.id = id;
         this.user = user;
         this.roleType = roleType;
     }
