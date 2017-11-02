@@ -27,4 +27,6 @@ public class Role {
         this.user = user;
         this.roleType = roleType;
     }
+
+
 }
