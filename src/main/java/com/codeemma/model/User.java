@@ -133,13 +133,12 @@ public class User implements UserDetails, Serializable {
 
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {
-//        List<GrantedAuthority> authorities = new ArrayList<>();
-//        if  (role != null)
-//            String roleName = "ROLE_"+
-//        authorities.add(new SimpleGrantedAuthority(roleName));
-//        }
-//        return authorities;
-        return null;
+        List<GrantedAuthority> authorities = new ArrayList<>();
+        if  (role != null){
+            String roleName = "ROLE_"+ role.getRoleType().name();
+            authorities.add(new SimpleGrantedAuthority(roleName));
+        }
+        return authorities;
     }
 
     @Override
@@ -154,21 +153,21 @@ public class User implements UserDetails, Serializable {
 
     @Override
     public boolean isAccountNonExpired() {
-        return false;
+        return true;
     }
 
     @Override
     public boolean isAccountNonLocked() {
-        return false;
+        return true;
     }
 
     @Override
     public boolean isCredentialsNonExpired() {
-        return false;
+        return true;
     }
 
     @Override
     public boolean isEnabled() {
-        return false;
+        return true;
     }
 }
