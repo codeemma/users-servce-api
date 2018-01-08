@@ -35,9 +35,6 @@ public class User implements UserDetails, Serializable {
     @Column(name = "email", nullable = false, unique = true)
     private String email;
 
-    @Column(name = "username", nullable = false, unique = true)
-    private String username;
-
     @Column(name = "password", nullable = false)
     private String password;
     @Column(name = "sex")
@@ -54,15 +51,17 @@ public class User implements UserDetails, Serializable {
     @JoinColumn(name = "role_id")
     private Role role;
 
+    @Column
+    private boolean deleted = false;
+
 
     public User() {
     }
 
-    public User(String firstname, String lastname, String email, String username, String password, String sex) {
+    public User(String firstname, String lastname, String email, String password, String sex) {
         this.firstname = firstname;
         this.lastname = lastname;
         this.email = email;
-        this.username = username;
         this.password = password;
         this.sex = sex;
     }
@@ -99,10 +98,6 @@ public class User implements UserDetails, Serializable {
         this.email = email;
     }
 
-    public void setUsername(String username) {
-        this.username = username;
-    }
-
     public void setPassword(String password) {
         this.password = password;
     }
@@ -131,6 +126,14 @@ public class User implements UserDetails, Serializable {
         this.role = role;
     }
 
+    public boolean isDeleted() {
+        return deleted;
+    }
+
+    public void setDeleted(boolean deleted) {
+        this.deleted = deleted;
+    }
+
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {
         List<GrantedAuthority> authorities = new ArrayList<>();
@@ -143,7 +146,7 @@ public class User implements UserDetails, Serializable {
 
     @Override
     public String getPassword() {
-        return null;
+        return password;
     }
 
     @Override
@@ -170,4 +173,5 @@ public class User implements UserDetails, Serializable {
     public boolean isEnabled() {
         return true;
     }
+
 }
